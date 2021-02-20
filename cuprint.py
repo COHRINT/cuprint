@@ -4,7 +4,6 @@ from __future__ import print_function
 This file provides an interface for colored terminal printing
 
 """
-import rospy
 import sys
 
 class bcolors: # For terminal colors
@@ -21,6 +20,8 @@ class CUPrint:
     def __init__(self, name, ros=True):
         self.name = name
         self.ros = ros
+        if self.ros:
+            import rospy
 
     def __call__(self, string, warn=False, err=False, print_prev_line=False):
         
@@ -49,7 +50,8 @@ class CUPrint:
             sys.stdout.flush() # flush stdout before we delay
 
 if __name__ == "__main__":
-    rospy.init_node("testing_print")
+    import time
+    # rospy.init_node("testing_print")
     cuprint = CUPrint("Test Print Node", ros=False)
     cuprint("I love strawberries")
     cuprint("I love strawberries", warn=True)
@@ -58,4 +60,4 @@ if __name__ == "__main__":
     for i in range(10):
         cuprint("num: " + str(i), print_prev_line=True)
 
-        rospy.sleep(0.2)
+        time.sleep(0.2)
