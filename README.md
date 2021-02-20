@@ -1,8 +1,10 @@
 # cuprint
-Colored terminal printing for identifying node print statements in shared terminal setting
+Colored terminal printing. Prepends node name so you can determine which node is printing when multiple nodes share same stdout (e.g. roslaunch).
 
 ## Example Usage
 ```
+from cuprint.cuprint import CUPrint
+
 cuprint = CUPrint("Test Print Node", ros=False)
 cuprint("I love strawberries")
 cuprint("I love strawberries", warn=True)
