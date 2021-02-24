@@ -5,6 +5,7 @@ This file provides an interface for colored terminal printing
 
 """
 import sys
+import rospy
 
 class bcolors: # For terminal colors
     HEADER = '\033[95m'
@@ -20,8 +21,6 @@ class CUPrint:
     def __init__(self, name, ros=True):
         self.name = name
         self.ros = ros
-        if self.ros:
-            import rospy
 
     def __call__(self, string, warn=False, err=False, print_prev_line=False):
         
